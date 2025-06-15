@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-    domains: ['www.shorturl.at'], // <-- Add external domain here
+  images: {
+    domains: [
+      'www.shorturl.at',
+      'github.githubassets.com',
+      'cdn-icons-png.flaticon.com',
+      'upload.wikimedia.org',
+    ],
   },
 };
 

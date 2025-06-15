@@ -83,7 +83,7 @@ export default function Home() {
               alt="Like Icon"
               width={75}
               height={75}
-              // style={{width:"100%",height:"auto"}}
+            // style={{width:"100%",height:"auto"}}
             />
           </div>
           <h3 className={styles["align-center"]}>Easy</h3>
@@ -141,15 +141,59 @@ export default function Home() {
           <div className={styles["icon"]}>
             <Image
               src="https://www.shorturl.at/img/icon-responsive.png"
-              alt="Responsive Icon"
+              alt="Device Icon"
               width={75}
               height={75}
             />
           </div>
-          <h3 className={styles["align-center"]}>Responsive</h3>
+          <h3 className={styles["align-center"]}>Device</h3>
           <p className={styles["align-center"]}>Compatible with smartphones, tablets and desktop</p>
         </div>
       </div>
+
+     <div className={styles["footer"]}>
+  <div className={styles.footerText}>
+    © 2025 <strong>ShortUrl Shorten</strong> — Tool to shorten a long link, created by <strong>Pramod Kumar</strong>
+  </div>
+  <ul className={styles["profiles"]}>
+    <li>
+      <a href="https://github.com/pramodkumar5921" target="_blank" rel="noopener noreferrer">
+        <img
+          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+          alt="GitHub"
+          width="24"
+          height="24"
+        />
+        <span>GitHub</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.linkedin.com/in/pramod-kumar-1b8470258/" target="_blank" rel="noopener noreferrer">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+          alt="LinkedIn"
+          width="24"
+          height="24"
+        />
+        <span>LinkedIn</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://leetcode.com/u/pramodkumar808751528270/" target="_blank" rel="noopener noreferrer">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png"
+          alt="LeetCode"
+          width="24"
+          height="24"
+        />
+        <span>LeetCode</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+
     </div>
   );
 }
