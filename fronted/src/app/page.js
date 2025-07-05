@@ -16,7 +16,7 @@ export default function Home() {
 
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:8081/api/shorten", {
+      const response = await fetch("https://shorturl-iquj.vercel.app/api/shorten", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
