@@ -1,7 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
-
+const path = require("path");
 // Load environment variables
 dotenv.config();
 
@@ -27,6 +27,7 @@ app.use(cors({
 
 // Basic middleware
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
 // Custom middleware
 app.use(sanitizeInput);
@@ -36,8 +37,12 @@ app.use(limiter);
 app.use("/api", urlRoutes);
 
 // Base route
+// app.get("/", (req, res) => {
+//   res.send();
+// });
+
 app.get("/", (req, res) => {
-  res.send("Welcome to URL Shortener API");
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 // 404 handler

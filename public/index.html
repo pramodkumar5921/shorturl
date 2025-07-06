@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShortURL</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ece9e6, #ffffff);
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    /* Main Container */
+    .main-page {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      max-width: 800px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Heading */
+    h1 {
+      font-size: 1.75rem;
+      color: #222;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Input Group */
+    .input-box {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      flex-direction: column;
+    }
+
+    @media (min-width: 480px) {
+      .input-box {
+        flex-direction: row;
+      }
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border 0.2s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: #4F46E5;
+      outline: none;
+    }
+
+    /* Button */
+    button {
+      padding: 0.75rem 1.25rem;
+      background-color: #4F46E5;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #4338CA;
+    }
+
+    /* Result Styles */
+    .result {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .result a {
+      color: #4F46E5;
+      text-decoration: underline;
+    }
+
+    /* Success and Error messages */
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-page">
+    <h1>Shorten Your Long URL</h1>
+    <div class="input-box">
+      <input type="text" placeholder="Enter long URL here" id="longUrl" />
+      <button onclick="shortenUrl()">Shorten</button>
+    </div>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    async function shortenUrl() {
+      const input = document.getElementById("longUrl");
+      const url = input.value.trim();
+      const resultDiv = document.getElementById("result");
+
+      if (!url) {
+        resultDiv.innerHTML = "<p class='error'>Please enter a URL.</p>";
+        return;
+      }
+
+      try {
+        const res = await fetch("https://shorturl-iquj.vercel.app/api/shorten", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url }),
+        });
+
+        const data = await res.json();
+        if (data.shortUrl) {
+          resultDiv.innerHTML = `<p class="success">Short URL: <a href="${data.shortUrl}" target="_blank">${data.shortUrl}</a></p>`;
+          input.value = "";  // Clear input
+        } else {
+          resultDiv.innerHTML = `<p class="error">${data.message || "Error shortening URL"}</p>`;
+        }
+      } catch (error) {
+        resultDiv.innerHTML = `<p class="error">Server error. Try again later.</p>`;
+      }
+    }
+  </script>
+</body>
+
+</html>
