@@ -13,6 +13,7 @@ const urlRoutes = require("./routes/urlRoutes");
 
 // Create express app
 const app = express();
+app.set('trust proxy', 1);
 const port = process.env.PORT || 8081;
 
 // Connect to MongoDB
